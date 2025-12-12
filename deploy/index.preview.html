@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>codenguhoc - Local Preview</title>
+  <!-- Auto-redirect to the portfolio copy, plus a simple landing page -->
+  <meta http-equiv="refresh" content="1;url=portfolio/index.html">
+  <style>
+    body{font-family: system-ui, -apple-system, Arial; background:#050718; color:#f6f9fc; min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .card{background:rgba(255,255,255,0.02);padding:20px;border-radius:12px;box-shadow:0 4px 30px rgba(0,0,0,0.6);max-width:780px}
+    a{color:#00b8ff}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Preview site locally</h1>
+    <p>This workspace contains two site copies: a <strong>portfolio</strong> version and an <strong>html</strong> variant for testing.</p>
+    <p>If you started a local HTTP server in the project root, you'll be redirected to <a href="portfolio/index.html">/portfolio/index.html</a> automatically. You can also choose one of these links:</p>
+    <ul>
+      <li><a href="portfolio/index.html">Open portfolio/index.html</a></li>
+      <li><a href="html/index.html">Open html/index.html</a></li>
+    </ul>
+
+    <h3>Start a local server (recommended)</h3>
+    <p>Run one of these commands in PowerShell:</p>
+    <pre style="background:#0a0f14;color:#00ffcc;padding:12px;border-radius:8px">
+cd "c:\Users\Admin\OneDrive\Documents\codenguhoc\portfolio"
+python -m http.server 8000 --bind 127.0.0.1
+
+# or to preview both simultaneously:
+# cd "c:\Users\Admin\OneDrive\Documents\codenguhoc\html"
+# python -m http.server 8001 --bind 127.0.0.1
+    </pre>
+    <p>If you prefer running the server from the repo root, open <a href="portfolio/index.html">/portfolio/index.html</a> after starting the server.</p>
+
+    <hr style="opacity:.06" />
+    <p style="font-size:.92rem;color:#c8d1db">If links still 404, check you started the server in the folder containing the HTML file (e.g. `portfolio`).</p>
+  </div>
+</body>
+</html>

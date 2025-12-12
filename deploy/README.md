@@ -1,36 +1,32 @@
-# Deploy folder
+# codenguhoc - Local website copies
 
-This `deploy` folder contains the minimal static site files ready for deployment to GitHub Pages or any static host.
+This workspace contains two local copies of a portfolio site:
+- `portfolio/` — primary copy, updated copy with your profile and styles.
+- `html/` — alternate/test copy.
 
-Included files:
-- `index.html` — main page
-- `styles.css` — site CSS
-- `main.js` — site JavaScript
+## Quick local preview (recommended)
+Start a Python HTTP server in the folder containing the `index.html` you want to preview:
 
-How to deploy to GitHub Pages (root branch):
-
-1. Ensure you have a git repository initialized and a remote configured.
-2. Copy or move the `deploy` folder contents to the repository root (or serve the `deploy` folder directly with a separate branch).
-3. Commit and push the changes.
-
-Example commands (from repo root):
+PowerShell examples:
 
 ```powershell
-git add -A
-git commit -m "Add static site for GitHub Pages"
-git push origin main
+# Preview the portfolio copy
+cd "c:\Users\Admin\OneDrive\Documents\codenguhoc\portfolio"
+python -m http.server 8000 --bind 127.0.0.1
+# then open: http://127.0.0.1:8000/
+
+# Preview the html copy (alternate)
+cd "c:\Users\Admin\OneDrive\Documents\codenguhoc\html"
+python -m http.server 8001 --bind 127.0.0.1
+# then open: http://127.0.0.1:8001/
+
+# If you start server at the repo root, open this URL manually:
+# http://127.0.0.1:8000/portfolio/index.html
 ```
 
-To use the `gh-pages` branch instead, you can run:
+## Common issues & fixes
+- 404 for `styles.css` or `main.js`: Ensure `index.html` lies in the same folder as `styles.css` and `main.js` and that you're serving that folder with the HTTP server.
+- Wrong index: If you start a server at repository root and intend to view `portfolio/index.html`, explicitly browse to `/portfolio/index.html`.
+- If you want automatic redirection from repo root to the portfolio copy, we include `index.html` at the project root which redirects to `/portfolio/index.html`.
 
-```powershell
-npx gh-pages -d deploy
-```
-
-Automatic deployment (recommended):
-
-1. This repo includes a GitHub Actions workflow at `.github/workflows/pages.yml` that deploys the `deploy/` folder to GitHub Pages whenever you push to `main`.
-2. After pushing, the first workflow run will publish the site using the GitHub Pages 'Actions' deployment method. You may need to allow workflow permissions in your repository's settings.
-3. If the repo is private, set Pages' permissions and ensure `GITHUB_TOKEN` has sufficient rights (usually default works for Actions deployments).
-
-If you'd like me to add a `CNAME` for a custom domain or copy the `deploy` content into `docs/` automatically, let me know.
+If you still see link errors, tell me the exact 404 URL shown in the browser DevTools Network tab or the error message printed in the Console, and I’ll debug further.

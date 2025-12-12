@@ -1,4 +1,7 @@
-// Full copy of portfolio/main.js — provides client-side behaviors and UI interactions.
+// ==========================
+// Basic DOM & Event Helpers
+// ==========================
+
 document.addEventListener('DOMContentLoaded', () => {
   // Quick local-serve diagnostics: check that styles.css loaded
   const cssBg = getComputedStyle(document.documentElement).getPropertyValue('--bg') || '';
