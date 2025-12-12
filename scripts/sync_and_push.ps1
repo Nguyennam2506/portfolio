@@ -1,6 +1,6 @@
 param(
   [string]$Branch = "main",
-  [string]$Message = "Sync portfolio -> deploy and push",
+  [string]$Message = "Sync portfolio -> docs and push",
   [switch]$CleanDeploy
 )
 
@@ -11,21 +11,21 @@ function ExitWithError($msg){
 
 $repoRoot = Get-Location
 $portfolio = Join-Path $repoRoot "portfolio"
-$deploy = Join-Path $repoRoot "deploy"
+$docs = Join-Path $repoRoot "docs"
 
 if(-not (Test-Path $portfolio)) { ExitWithError "portfolio/ folder not found at $portfolio" }
-if(-not (Test-Path $deploy)) { New-Item -ItemType Directory -Path $deploy | Out-Null }
+if(-not (Test-Path $docs)) { New-Item -ItemType Directory -Path $docs | Out-Null }
 
-# Optional cleanup of deploy folder (remove files not in portfolio)
+# Optional cleanup of docs folder (remove files not in portfolio)
 if ($CleanDeploy) {
-  Write-Host "Cleaning deploy folder..."
-  Get-ChildItem -Path $deploy -Recurse -Force | Where-Object { $_.FullName -notlike "*$($repoRoot.Path)\.git*" } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+  Write-Host "Cleaning docs folder..."
+  Get-ChildItem -Path $docs -Recurse -Force | Where-Object { $_.FullName -notlike "*$($repoRoot.Path)\.git*" } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 }
 
-Write-Host "Copying portfolio to deploy..."
+Write-Host "Copying portfolio to docs..."
 Get-ChildItem -Path $portfolio -Recurse -Force | ForEach-Object {
   $rel = $_.FullName.Substring($portfolio.Length + 1)
-  $dest = Join-Path $deploy $rel
+  $dest = Join-Path $docs $rel
   $destDir = Split-Path -Parent $dest
   if(-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }
   Copy-Item -Path $_.FullName -Destination $dest -Force

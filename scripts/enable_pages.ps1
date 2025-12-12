@@ -3,8 +3,8 @@ param(
   [string]$Owner,
   [Parameter(Mandatory=$true)]
   [string]$Repo,
-  [string]$Branch = "gh-pages",
-  [string]$Path = "/",
+  [string]$Branch = "main",
+  [string]$Path = "/docs",
   [string]$Token = $env:GITHUB_TOKEN
 )
 

@@ -3,7 +3,7 @@
 #    .\scripts\push_deploy.ps1 -Branch main -Message "Your commit message"
 param(
   [string]$Branch = "main",
-  [string]$Message = "Cleanup: remove duplicates & add deploy-ready site",
+  [string]$Message = "Cleanup: remove duplicates & add docs-ready site",
   [string]$Remote = "origin"
 )
 
