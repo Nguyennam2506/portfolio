@@ -1,0 +1,18 @@
+# Ignore compiled binaries
+*.exe
+
+# Ignore Python artifacts
+__pycache__/
+*.pyc
+
+# Local editor folders
+.vscode/
+
+# Node dependencies
+node_modules/
+
+# Build artifacts and logs
+*.log
+
+# Backup folder created during cleanup
+backup/
